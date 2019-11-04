@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
 </head>
 <body>
 
 
     <div id="app">
-        <input type="text" v-on:input="changeTitle">
-        {{title}}
+        <label>
+            <input type="text" v-on:input="changeTitle">
+        </label>
+        <p>{{title}}</p>
+        <p>{{ say() }}</p>
     </div>
 
     <script>
@@ -22,6 +25,9 @@
             methods:{
                 changeTitle: function (event) {
                     this.title = event.target.value;
+                },
+                say: function () {
+                    return "Hello string"
                 }
             }
         })
