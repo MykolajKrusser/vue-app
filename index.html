@@ -11,8 +11,18 @@
         <label>
             <input type="text" v-on:input="changeTitle">
         </label>
-        <p>{{title}}</p>
+        <h1 v-once>{{title}}</h1>
         <p>{{ say() }} <a v-bind:href="link">Google</a></p>
+        <hr>
+        <p v-html="finishedLink"></p>
+
+        <hr>
+        <button v-on:click="onIncresultNumber">Increase a number</button>
+        <p>result is {{resultNumber}}</p>
+
+        <hr>
+
+        <p v-on:mousemove="mouseCoordinates">mouse coordinates : {{ x }} / {{ y }} <span v-on:mousemove.stop>Stop event fire</span></p>
     </div>
 
     <script>
@@ -20,14 +30,26 @@
             el: '#app',
             data: {
                 title: "hello world!",
-                link: "http://google.com"
+                link: "http://google.com",
+                finishedLink: "<a href='http://google.com'>Google</a>",
+                resultNumber: 0,
+                x: 0,
+                y: 0
             },
             methods:{
                 changeTitle: function (event) {
                     this.title = event.target.value;
                 },
                 say: function () {
+                    this.title = "Changed strung in methods";
                     return this.title
+                },
+                onIncresultNumber: function () {
+                    this.resultNumber++
+                },
+                mouseCoordinates: function (event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
                 }
             }
         })
